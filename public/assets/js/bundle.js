@@ -98,7 +98,7 @@ var ___CSS_LOADER_API_IMPORT___ = __webpack_require__(/*! ../../../node_modules/
 exports = ___CSS_LOADER_API_IMPORT___(false);
 exports.push([module.i, "@import url(https://fonts.googleapis.com/css?family=Open+Sans:400,700&display=swap);"]);
 // Module
-exports.push([module.i, ":root {\n  --primary-color: rgb(17, 86, 102);\n  --primary-color-darker: rgb(9, 48, 56);\n}\n\n* {\n  box-sizing: border-box;\n  outline: 0;\n}\n\nbody {\n  margin: 0;\n  padding: 0;\n  background: var(--primary-color);\n  font-family: 'Open sans', sans-serif;\n  font-size: 1.3em;\n  line-height: 1.5em;\n}\n\n.container {\n  max-width: 640px;\n  margin: 50px auto;\n  background: #fff;\n  padding: 20px;\n  border-radius: 10px;\n}\n\nform input, form label, form button {\n  display: block;\n  width: 100%;\n  margin-bottom: 10px;\n}\n\nform input {\n  font-size: 24px;\n  height: 50px;\n  padding: 0 20px;\n}\n\nform input:focus {\n  outline: 1px solid var(--primary-color);\n}\n\nform button {\n  border: none;\n  background: var(--primary-color);\n  color: #fff;\n  font-size: 18px;\n  font-weight: 700;\n  height: 50px;\n  cursor: pointer;\n  margin-top: 30px;\n}\n\nform button:hover {\n  background: var(--primary-color-darker);\n}\n\ntable{\n  width: 100%;\n}\nh1 {\n  margin-bottom: 40px;\n  text-align: center;\n}\n.cpf-generated{\n  text-align: center;\n  font-size: 2em;\n  color: var(--primary-color);\n  font-weight: bold;\n  margin-bottom: 40px;\n  letter-spacing: 4px;\n}", ""]);
+exports.push([module.i, ":root {\n  --primary-color: rgb(17, 86, 102);\n  --primary-color-darker: rgb(9, 48, 56);\n}\n\n* {\n  box-sizing: border-box;\n  outline: 0;\n}\n\nbody {\n  margin: 0;\n  padding: 0;\n  background: var(--primary-color);\n  font-family: 'Open sans', sans-serif;\n  font-size: 1.3em;\n  line-height: 1.5em;\n}\n\n.container {\n  max-width: 640px;\n  margin: 50px auto;\n  background: #fff;\n  padding: 20px;\n  border-radius: 10px;\n}\n\nform input, form label, form button {\n  display: block;\n  width: 100%;\n  margin-bottom: 10px;\n}\n\nform input {\n  font-size: 24px;\n  height: 50px;\n  padding: 0 20px;\n}\n\nform input:focus {\n  outline: 1px solid var(--primary-color);\n}\n\nform button {\n  border: none;\n  background: var(--primary-color);\n  color: #fff;\n  font-size: 18px;\n  font-weight: 700;\n  height: 50px;\n  cursor: pointer;\n  margin-top: 30px;\n}\n\nform button:hover {\n  background: var(--primary-color-darker);\n}\n\ntable{\n  width: 100%;\n}\nh1 {\n  margin-bottom: 40px;\n  text-align: center;\n}\n.generatePass{\n  text-align: center;\n  font-size: 1em;\n  color: var(--primary-color);\n  font-weight: bold;\n  margin-bottom: 40px;\n}", ""]);
 // Exports
 module.exports = exports;
 
@@ -481,9 +481,91 @@ module.exports = exported;
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _assets_css_style_css__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./assets/css/style.css */ "./src/assets/css/style.css");
-/* harmony import */ var _assets_css_style_css__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_assets_css_style_css__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _modules_formGeneratePass__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./modules/formGeneratePass */ "./src/modules/formGeneratePass.js");
+/* harmony import */ var _assets_css_style_css__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./assets/css/style.css */ "./src/assets/css/style.css");
+/* harmony import */ var _assets_css_style_css__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_assets_css_style_css__WEBPACK_IMPORTED_MODULE_1__);
 
+
+console.log(Object(_modules_formGeneratePass__WEBPACK_IMPORTED_MODULE_0__["default"])());
+
+/***/ }),
+
+/***/ "./src/modules/formGeneratePass.js":
+/*!*****************************************!*\
+  !*** ./src/modules/formGeneratePass.js ***!
+  \*****************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _generatePass__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./generatePass */ "./src/modules/generatePass.js");
+
+var pass = document.querySelector('.generatePass');
+var qntChar = document.querySelector('.qnt-char');
+var charUpper = document.querySelector('.char-upper');
+var charLower = document.querySelector('.char-lower');
+var charNumbers = document.querySelector('.char-numbers');
+var charSimbles = document.querySelector('.char-simbles');
+var generateBtn = document.querySelector('.generate');
+/* harmony default export */ __webpack_exports__["default"] = (function () {
+  generateBtn.addEventListener('click', function () {
+    pass.innerHTML = gera();
+  });
+});
+
+function gera() {
+  var pass = Object(_generatePass__WEBPACK_IMPORTED_MODULE_0__["default"])(qntChar.value, charUpper.checked, charLower.checked, charNumbers.checked, charSimbles.checked);
+  return pass || 'No options selected';
+}
+
+/***/ }),
+
+/***/ "./src/modules/generatePass.js":
+/*!*************************************!*\
+  !*** ./src/modules/generatePass.js ***!
+  \*************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return generatePass; });
+var rand = function rand(min, max) {
+  return Math.floor(Math.random() * (max - min) + min);
+};
+
+var generateUpperCase = function generateUpperCase() {
+  return String.fromCharCode(rand(65, 91));
+};
+
+var generateLowerCase = function generateLowerCase() {
+  return String.fromCharCode(rand(97, 123));
+};
+
+var generateNumber = function generateNumber() {
+  return String.fromCharCode(rand(48, 58));
+};
+
+var simble = ',.;:?~^´`[]{}()!#$%&-_\/';
+
+var generateSimble = function generateSimble() {
+  return simble[rand(0, simble.length)];
+};
+
+function generatePass(qnt, upperCase, lowerCase, number, simble) {
+  var array = [];
+  qnt = Number(qnt);
+
+  for (var i = 0; i < qnt; i++) {
+    upperCase && array.push(generateUpperCase());
+    lowerCase && array.push(generateLowerCase());
+    number && array.push(generateNumber());
+    simble && array.push(generateSimble());
+  }
+
+  return array.join('').slice(0, qnt);
+}
 
 /***/ })
 

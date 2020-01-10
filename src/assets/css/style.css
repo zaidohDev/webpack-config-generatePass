@@ -64,11 +64,10 @@ h1 {
   margin-bottom: 40px;
   text-align: center;
 }
-.cpf-generated{
+.generatePass{
   text-align: center;
-  font-size: 2em;
+  font-size: 1em;
   color: var(--primary-color);
   font-weight: bold;
   margin-bottom: 40px;
-  letter-spacing: 4px;
 }
